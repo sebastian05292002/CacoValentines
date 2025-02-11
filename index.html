@@ -10,12 +10,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Allow scrolling */
+            height: 100vh;
             background-color: purple;
             flex-direction: column;
             text-align: center;
             position: relative;
-            overflow-x: hidden; /* Prevent horizontal overflow */
+            overflow: hidden;
         }
         h1 {
             font-size: 2em;
@@ -62,7 +62,6 @@
 
     <script>
         let noClickCount = 0;
-        let chaseCount = 0;
         const noMessages = [
             "Hahaha babe you put the wrong answer! Try again :)",
             "Babe no more silly jokes, press yes!",
@@ -75,13 +74,13 @@
 
             // Add Tomahawk Image
             let tomahawkImg = document.createElement("img");
-            tomahawkImg.src = "tomahawk.jpg"; // Ensure this file is uploaded
+            tomahawkImg.src = "tomahawk.jpg"; // Make sure to upload this file to GitHub
             tomahawkImg.alt = "Tomahawk";
             document.body.appendChild(tomahawkImg);
 
             // Add "Me and You" Image
             let coupleImg = document.createElement("img");
-            coupleImg.src = "meandu.jpg"; // Ensure this file is uploaded
+            coupleImg.src = "meandu.jpg"; // Make sure to upload this file to GitHub
             coupleImg.alt = "Us 💖";
             document.body.appendChild(coupleImg);
         }
@@ -92,7 +91,6 @@
                 document.getElementById("message").innerText = noMessages[noClickCount];
                 noClickCount++;
             } else {
-                // Move "No" button to the top right first
                 noButton.style.position = "fixed";
                 noButton.style.top = "10px";
                 noButton.style.right = "10px";
@@ -107,22 +105,6 @@
             let y = Math.random() * (window.innerHeight - 50);
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
-
-            chaseCount++;
-
-            // After 6 chases, change the "No" button text
-            if (chaseCount === 6) {
-                noButton.innerText = "Press this and well... kys meanie jk!";
-                noButton.onclick = removeNo;
-            }
-        }
-
-        function removeNo() {
-            let noButton = document.getElementById("no");
-            noButton.style.display = "none";
-            let yesButton = document.getElementById("yes");
-            yesButton.style.fontSize = "2em";
-            yesButton.style.padding = "20px 40px";
         }
     </script>
 
