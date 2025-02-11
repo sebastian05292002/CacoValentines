@@ -20,13 +20,11 @@
         h1 {
             font-size: 2em;
             color: white;
-            z-index: 10; /* Ensures the text stays on top */
             position: relative;
         }
         .buttons {
             margin-top: 20px;
             position: relative;
-            z-index: 10; /* Ensures buttons stay on top */
         }
         button {
             font-size: 1.2em;
@@ -45,12 +43,11 @@
             color: red;
             position: absolute;
         }
-        .cat {
-            position: absolute;
-            width: 100px;
+        img {
+            margin-top: 20px;
+            width: 300px;
             height: auto;
-            opacity: 0.9;
-            z-index: 1; /* Ensures cats stay in the background */
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -74,37 +71,33 @@
 
         function sayYes() {
             document.body.innerHTML = "<h1>Yay! Time for tomahawk time :3 ❤️</h1>";
+            let img = document.createElement("img");
+            img.src = "tomahawk.jpg"; // Change this to match your uploaded image filename
+            img.alt = "Tomahawk";
+            document.body.appendChild(img);
         }
 
         function handleNo() {
+            let noButton = document.getElementById("no");
             if (noClickCount < noMessages.length) {
                 document.getElementById("message").innerText = noMessages[noClickCount];
                 noClickCount++;
             } else {
-                document.getElementById("no").style.display = "none";
-                document.getElementById("yes").style.fontSize = "2em";
-                document.getElementById("yes").style.padding = "20px 40px";
+                noButton.style.position = "fixed";
+                noButton.style.top = "10px";
+                noButton.style.right = "10px";
+                document.getElementById("message").innerText = "I made it easier for you :)";
+                noButton.onclick = moveNo;
             }
         }
 
-        // Add fluffy cats to the background without blocking text/buttons
-        function addCats() {
-            for (let i = 0; i < 10; i++) {
-                let cat = document.createElement("img");
-                cat.src = "https://cdn2.thecatapi.com/images/MTgzNjA2MQ.jpg"; // Fluffy cat image URL
-                cat.className = "cat";
-
-                // Ensuring cats don't block text/buttons
-                let x = Math.random() * window.innerWidth;
-                let y = Math.random() * (window.innerHeight - 200) + 100; // Avoids blocking top center
-
-                cat.style.left = `${x}px`;
-                cat.style.top = `${y}px`;
-                document.body.appendChild(cat);
-            }
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
         }
-
-        addCats();
     </script>
 
 </body>
