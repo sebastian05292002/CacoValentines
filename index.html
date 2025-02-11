@@ -71,10 +71,18 @@
 
         function sayYes() {
             document.body.innerHTML = "<h1>Yay! Time for tomahawk time :3 ❤️</h1>";
-            let img = document.createElement("img");
-            img.src = "tomahawk.jpg"; // Change this to match your uploaded image filename
-            img.alt = "Tomahawk";
-            document.body.appendChild(img);
+
+            // Add Tomahawk Image
+            let tomahawkImg = document.createElement("img");
+            tomahawkImg.src = "tomahawk.jpg"; // Make sure to upload this file to GitHub
+            tomahawkImg.alt = "Tomahawk";
+            document.body.appendChild(tomahawkImg);
+
+            // Add "Me and You" Image
+            let coupleImg = document.createElement("img");
+            coupleImg.src = "meandu.jpg"; // Make sure to upload this file to GitHub
+            coupleImg.alt = "Us 💖";
+            document.body.appendChild(coupleImg);
         }
 
         function handleNo() {
