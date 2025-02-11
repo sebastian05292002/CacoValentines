@@ -11,13 +11,15 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: pink;
+            background-color: purple;
             flex-direction: column;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         h1 {
             font-size: 2em;
-            color: red;
+            color: white;
         }
         .buttons {
             margin-top: 20px;
@@ -40,28 +42,60 @@
             color: red;
             position: absolute;
         }
+        .cat {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Hiiii babe can you be my my my valentine :) ❤️</h1>
+    <h1 id="message">Hiiii babe, can you be my my my valentine? :) ❤️</h1>
     
     <div class="buttons">
         <button id="yes" onclick="sayYes()">Yes</button>
-        <button id="no" onmouseover="moveNo()">No</button>
+        <button id="no" onclick="handleNo()">No</button>
     </div>
 
     <script>
+        let noClickCount = 0;
+        const noMessages = [
+            "Hahaha babe you put the wrong answer! Try again :)",
+            "Babe no more silly jokes, press yes!",
+            "Babe? 🥺",
+            "Ok :( Ahaha jk, you meant to press yes! 😆"
+        ];
+
         function sayYes() {
-            document.body.innerHTML = "<h1>Yay! Time for tomahawk time :3 </h1>";
+            document.body.innerHTML = "<h1>Yay! Time for tomahawk time :3 ❤️</h1>";
         }
 
-        function moveNo() {
-            let x = Math.random() * window.innerWidth - 100;
-            let y = Math.random() * window.innerHeight - 50;
-            document.getElementById("no").style.left = `${x}px`;
-            document.getElementById("no").style.top = `${y}px`;
+        function handleNo() {
+            if (noClickCount < noMessages.length) {
+                document.getElementById("message").innerText = noMessages[noClickCount];
+                noClickCount++;
+            } else {
+                document.getElementById("no").style.display = "none";
+                document.getElementById("yes").style.fontSize = "2em";
+                document.getElementById("yes").style.padding = "20px 40px";
+            }
         }
+
+        // Add random cats to the background
+        function addCats() {
+            for (let i = 0; i < 10; i++) {
+                let cat = document.createElement("img");
+                cat.src = "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg"; // Cute cat image URL
+                cat.className = "cat";
+                cat.style.left = Math.random() * window.innerWidth + "px";
+                cat.style.top = Math.random() * window.innerHeight + "px";
+                document.body.appendChild(cat);
+            }
+        }
+
+        addCats();
     </script>
 
 </body>
